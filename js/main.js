@@ -1,7 +1,9 @@
 var w = document.getElementById("weather");
 var btn=document.getElementById("btn_id");
 var temp=document.getElementById("temp");
-btn.addEventListener('click',toggleScale);
+var tempunit=document.getElementById("tempunit");
+var currentCelsius;
+tempunit.addEventListener('click',toggleScale);
 
 
 function currentWeather(){
@@ -23,24 +25,24 @@ function showPosition(position) {
            url:'https://fcc-weather-api.glitch.me/api/current?lat='+position.coords.latitude+'&lon='+position.coords.longitude,
         }).done(function(loc){
          
-             var img=document.createElement('img');
              
-             img.src= loc.weather[0].icon;
-             img.alt="Not available";
-             img.width=304;
-             img.height=236;
+             var txt = document.createTextNode("Celsius");
+
              w.innerText=loc.name+", "+loc.sys.country+" \n"+loc.weather[0].main;
-             temp.innerText=loc.main.temp;
-             console.log(loc.weather[0]);
-         
+             currentCelsius=loc.main.temp;
+            
+             tempunit.textContent="Celsius";
+
+             temp.textContent=loc.main.temp+" "+String.fromCharCode(176)+" ";
         });
     
 }
 
 function toggleScale(){
-    var content = btn.textContent;
+    var content = tempunit.textContent; //c or F
     var value = temp.textContent;
     var updatedtemp;
+
     if(content=="Celsius")
     {
         updated="Farenheit";
@@ -49,12 +51,13 @@ function toggleScale(){
     else
     {
         updated="Celsius";
-        updatedtemp=(parseInt(value)-32)/1.8;
+        updatedtemp=currentCelsius;
 
     }
-    
-    btn.textContent=updated;
-    temp.textContent=updatedtemp;
+
+        temp.textContent=updatedtemp+" "+String.fromCharCode(176);
+        tempunit.textContent=updated;
+
     
 
 }
