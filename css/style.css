@@ -1,0 +1,48 @@
+/* Space out content a bit */
+ 
+.main{
+   height: 400px;
+  width: 400px;
+ margin: 0 auto;
+ background: #eee;
+}
+
+h2{
+       
+    text-align: center;
+    border: 3px solid black;
+
+    
+}
+.outer{
+    
+    
+        position: relative;
+        left: 40%;
+        border: 3px solid red;
+
+}
+
+
+.center {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size:18px;
+    color: black;
+
+}
+
+
+
+#footer{
+ position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: white;
+  text-align: center;
+}
